@@ -12,10 +12,15 @@ int	parse_link(t_lem *lem, char *str)
 		tmp = ft_strsub(str, 0, (size_t) ft_strindexof(str, '-'));
 		printf("The first name is: %s\n", tmp);
 		a = ft_graph_getvertex_byname(lem->g, tmp);
+		if (a == NULL)
+			printf("its a thats null\n");
 		free(tmp);
 		tmp = ft_strchr(str, '-');
 		tmp++;
+		printf("The second name is: %s\n", tmp);
 		b = ft_graph_getvertex_byname(lem->g, tmp);
+		if (b == NULL)
+			printf("its b thats null\n");
 		if (a != NULL && b != NULL)
 			ft_graph_addedge(lem->g, a->number, b->number);
 		else
