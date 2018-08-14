@@ -6,8 +6,9 @@ INC_PATH = ./includes/
 OBJ_PATH = ./obj/
 
 #Source
-SRC_NAME=	main.c \
-			get_next_line.c
+SRC_NAME=	get_next_line.c \
+			main.c \
+			parser.c \
 
 OBJ_NAME = $(SRC_NAME:%.c=%.o)
 
@@ -28,7 +29,7 @@ LFT = -lft
 all:$(NAME)
 
 $(NAME): $(OBJ) $(INC_PATH)
-	@make -C./libft/
+	#@make -C./libft/
 	@$(CC) -o $@  $(OBJ) $(LDFLAGS) $(LFT) 
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

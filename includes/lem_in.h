@@ -12,7 +12,19 @@
 
 #ifndef LEM_IN_H_
 # define LEM_IN_H_
-# include "libft.h"
 # include "get_next_line.h"
+# include "graph.h"
+
+typedef struct	s_lem
+{
+	t_graph		*g;
+	int			total_ants;
+	int			begin_room;
+	int			end_room;
+}				t_lem;
+
+int			parse_link(t_lem *lem, char *str);
+int			parse_command(t_lem *lem, char *str);
+int			parse_room(t_lem *lem, char *str);
 
 #endif
