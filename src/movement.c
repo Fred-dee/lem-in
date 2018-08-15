@@ -20,3 +20,17 @@ void	room_status(t_lem *lem)
 		}
 	}
 }
+
+int		make_move(t_lem *lem, t_vertex *from, t_vertex *to)
+{
+	if (to->num_ants == 0 || to->number == lem->end_room)
+	{
+		if (from->num_ants > 0)
+		{
+			from->num_ants--;
+			to->num_ants++;
+			return (TRUE);
+		}
+	}
+	return (FALSE);
+}
