@@ -10,6 +10,7 @@ SRC_NAME=	get_next_line.c \
 			main.c \
 			movement.c \
 			parser.c \
+			play.c \
 
 OBJ_NAME = $(SRC_NAME:%.c=%.o)
 
