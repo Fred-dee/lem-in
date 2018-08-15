@@ -31,7 +31,7 @@ LFT = -lft
 all:$(NAME)
 
 $(NAME): $(OBJ) $(INC_PATH)
-	#@make -C./libft/
+	@make -C./libft/
 	@$(CC) -o $@  $(OBJ) $(LDFLAGS) $(LFT) 
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

@@ -49,7 +49,8 @@ int	main(void)
 	begin_room->name);
 	printf("The end room is: %d and has name: %s\n",lem.end_room, 
 	end_room->name);
-	make_move(&lem, begin_room, ft_graph_getvertex_byid(lem.g, *(int *)begin_room->neighbours->content));
-	room_status(&lem);
+	//make_move(&lem, begin_room, ft_graph_getvertex_byid(lem.g, *(int *)begin_room->neighbours->content));
+	//room_status(&lem);
+	solve(&lem);
 	return (0);
 }
