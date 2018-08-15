@@ -23,6 +23,7 @@ int	main(void)
 	if((read_ret = get_next_line(0, &str)) < 0)
 		return (-1);
 	lem.total_ants = ft_atoi(str);
+	//str = ft_strnew(1);
 	while((read_ret = get_next_line(0, &str)) > 0)
 	{
 		printf("%d: %s\n", read_ret, str);

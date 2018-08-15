@@ -9,18 +9,13 @@ int	parse_link(t_lem *lem, char *str)
 
 	if(lem != NULL && lem->g != NULL)
 	{
-		tmp = ft_strsub(str, 0, (size_t) ft_strindexof(str, '-'));
-		printf("The first name is: %s\n", tmp);
+		if(ft_isprint(str[ft_strindexof(str, '\0') - 1]) == 0)
+			str[ft_strindexof(str, '\0') - 1] = '\0';
+		tmp = ft_strsub(str, 0, ft_strindexof(str, '-'));
 		a = ft_graph_getvertex_byname(lem->g, tmp);
-		if (a == NULL)
-			printf("its a thats null\n");
 		free(tmp);
-		tmp = ft_strchr(str, '-');
-		tmp++;
-		printf("The second name is: %s\n", tmp);
+		tmp = ft_strsub(str, ft_strindexof(str, '-') + 1, ft_strlen(str));
 		b = ft_graph_getvertex_byname(lem->g, tmp);
-		if (b == NULL)
-			printf("its b thats null\n");
 		if (a != NULL && b != NULL)
 			ft_graph_addedge(lem->g, a->number, b->number);
 		else
