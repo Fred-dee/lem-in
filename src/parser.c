@@ -27,22 +27,26 @@ int	parse_link(t_lem *lem, char *str)
 int	parse_command(t_lem *lem, char *str)
 {
 	char		**split;
+	char		*tmp;
 	t_vertex	*v;
 
-	if (get_next_line(0, &str) > 0)
+	if (get_next_line(0, &tmp) > 0)
 	{
-		if (parse_room(lem, str) == FALSE)
+		if (parse_room(lem, tmp) == FALSE)
 			return (FALSE);
 	}
 	else
 		return (FALSE);
-	if(ft_strcmp(str, "##start") == 0)
+	split = ft_strsplit(tmp, ' ');
+	v = ft_graph_getvertex_byname(lem->g, split[0]);
+	if(ft_strncmp(str, "##start", 7) == 0)
 	{
-		split = ft_strsplit(str, ' ');
-		v = ft_graph_getvertex_byname(lem->g, split[0]);
 		v->num_ants = lem->total_ants;
-		//free split
+		lem->begin_room = v->number;
 	}
+	else
+		lem->end_room = v->number;
+	//free split
 	return (TRUE);
 }
 

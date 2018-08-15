@@ -26,5 +26,6 @@ typedef struct	s_lem
 int			parse_link(t_lem *lem, char *str);
 int			parse_command(t_lem *lem, char *str);
 int			parse_room(t_lem *lem, char *str);
+void		room_status(t_lem *lem);
 
 #endif

@@ -26,9 +26,9 @@
 # define LIGHT_RED "\e[91m"
 # define LIGHT_GREEN "\e[92m"
 # define LIGHT_YELLOW "\e[93m"
-# define LIGHT_BLUE "\e94m"
-# define LIGHT_MAGENTA "\e95m"
-# define LIGHT_CYAN "\e96m"
-# define WHITE "\e97m"
+# define LIGHT_BLUE "\e[94m"
+# define LIGHT_MAGENTA "\e[95m"
+# define LIGHT_CYAN "\e[96m"
+# define WHITE "\e[97m"
 
 #endif

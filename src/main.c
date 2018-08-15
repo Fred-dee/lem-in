@@ -26,11 +26,13 @@ int	main(void)
 	//str = ft_strnew(1);
 	while((read_ret = get_next_line(0, &str)) > 0)
 	{
-		printf("%d: %s\n", read_ret, str);
+		//printf("%d: %s\n", read_ret, str);
 		if (ft_strchr(str, '-') != NULL)
 			parse_link(&lem, str);
-		else if(ft_strcmp(str, "##start") == 0 || ft_strcmp(str, "##end") == 0)
+		else if(ft_strncmp(str, "##start", 7) == 0 || ft_strncmp(str, "##end", 5) == 0)
+		{
 			parse_command(&lem, str);
+		}
 		else if (str[0] != '#')
 			parse_room(&lem, str);
 		free(str);
@@ -38,5 +40,10 @@ int	main(void)
 	printf("The total amount of ants is: %d\n", lem.total_ants);
 	ft_graph_genmatrices(lem.g);
 	ft_graph_print(lem.g);
+	room_status(&lem);
+	printf("The start room is: %d and has name %s\n",lem.begin_room,
+	ft_graph_getvertex_byid(lem.g, lem.begin_room)->name);
+	printf("The end room is: %d and has name: %s\n",lem.end_room, 
+	ft_graph_getvertex_byid(lem.g, lem.end_room)->name);
 	return (0);
 }
