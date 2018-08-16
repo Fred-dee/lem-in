@@ -16,6 +16,7 @@ void	DFS(t_graph *g, t_vertex *vert, int *arr)
 	t_vertex	*v;
 
 	i = 0;
+	arr[vert->number] = 1;
 	printf("I am visiting: %s\n", vert->name);
 	while(i < ft_lstsize(&vert->neighbours))
 	{
@@ -23,8 +24,8 @@ void	DFS(t_graph *g, t_vertex *vert, int *arr)
 		if (arr[v->number] == -1)
 			DFS(g, v, arr);
 		i++;
+
 	}
-	arr[vert->number] = 1;
 }
 
 void	run_turn(t_lem *lem, t_vertex *begin_room)
