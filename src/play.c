@@ -10,22 +10,27 @@ int		is_in(int *arr, int len, int search)
 	return (FALSE);
 }
 
-void	DFS(t_graph *g, t_vertex *vert, int *arr)
+void	DFS(t_lem *lem, t_vertex *vert, int *arr)
 {
 	size_t		i;
 	t_vertex	*v;
 
 	i = 0;
 	arr[vert->number] = 1;
-	printf("I am visiting: %s\n", vert->name);
+	//printf("I am visiting: %s\n", vert->name);
 	while(i < ft_lstsize(&vert->neighbours))
 	{
-		v = ft_graph_getvertex_byid(g, *(int *)ft_lstat(vert->neighbours, i)->content);
+		v = ft_graph_getvertex_byid(lem->g, *(int *)ft_lstat(vert->neighbours, i)->content);
 		if (arr[v->number] == -1)
-			DFS(g, v, arr);
+			DFS(lem, v, arr);
+		if(v->number != lem->end_room)
+			make_move(lem, vert, v);
 		i++;
-
 	}
+	printf("I am visiting: %s\n", vert->name);
+	//make_move(lem, vert, v);
+	//if(v->number != lem->end_room)
+		//make_move(lem, vert, v);
 }
 
 void	run_turn(t_lem *lem, t_vertex *begin_room)
@@ -36,7 +41,8 @@ void	run_turn(t_lem *lem, t_vertex *begin_room)
 	i = 0;
 	while (i < lem->g->num_vertices)
 		visited[i++] = -1;
-	DFS(lem->g, begin_room, visited);
+	DFS(lem, begin_room, visited);
+	room_status(lem);
 }
 
 int		solve(t_lem *lem)
@@ -50,7 +56,8 @@ int		solve(t_lem *lem)
 			return (FALSE);
 		if((end_room = ft_graph_getvertex_byid(lem->g, lem->end_room)) == NULL)
 			return (FALSE);
-		run_turn(lem, begin_room);
+		//while (end_room->num_ants != lem->total_ants)
+			run_turn(lem, begin_room);
 	}
 	return (FALSE);
 }

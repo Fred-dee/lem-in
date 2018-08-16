@@ -29,6 +29,7 @@ int		make_move(t_lem *lem, t_vertex *from, t_vertex *to)
 		{
 			from->num_ants--;
 			to->num_ants++;
+			//put the string of the succesfull move
 			return (TRUE);
 		}
 	}
