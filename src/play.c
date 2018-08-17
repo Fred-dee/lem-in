@@ -45,19 +45,47 @@ void	run_turn(t_lem *lem, t_vertex *begin_room)
 	room_status(lem);
 }
 
+void	game(t_lem *lem, t_vertex* begin_room, t_vertex *end_room, int *visited);
+
 int		solve(t_lem *lem)
 {
 	t_vertex	*begin_room;
 	t_vertex	*end_room;
+	int			*visited;
+	int			i;
+	t_list		*tmp;
 
 	if (lem != NULL && lem->g != NULL && lem->g->vertices != NULL)
 	{
+		i = 0;
 		if((begin_room = ft_graph_getvertex_byid(lem->g, lem->begin_room)) == NULL)
 			return (FALSE);
 		if((end_room = ft_graph_getvertex_byid(lem->g, lem->end_room)) == NULL)
 			return (FALSE);
-		//while (end_room->num_ants != lem->total_ants)
+		if ((visited = (int *)ft_memalloc(sizeof(int) * lem->g->num_vertices)) == NULL)
+			return (FALSE);
+		while (i < lem->g->num_vertices)
+			visited[i++] = -1;
+		visited[lem->end_room] = 1;
+		while (end_room->num_ants != lem->total_ants && is_in(visited, lem->g->num_vertices, -1) == TRUE)
+		{
+			if (begin_room->num_ants == 0)
+			{
+				visited[begin_room->number] = 1;
+				i = 0;
+				tmp = begin_room->neighbours;
+				while (tmp != NULL)
+				{
+					if
+					tmp = tmp->next;
+				}
+
+				//while ((size_t) i < ft_lstsize(begin_room->neighbours))
+				while (t)
+			}
+
 			run_turn(lem, begin_room);
+		}
 	}
 	return (FALSE);
 }
