@@ -16,7 +16,7 @@ void	DFS(t_lem *lem, t_vertex *vert, int *arr)
 	t_vertex	*v;
 
 	i = 0;
-	arr[vert->number] = 1;
+	arr[vert->number] = 0;
 	if (vert->number !=  lem->end_room)
 	{
 		while(i < ft_lstsize(&vert->neighbours))
@@ -26,8 +26,8 @@ void	DFS(t_lem *lem, t_vertex *vert, int *arr)
 			{
 				DFS(lem, v, arr);
 				make_move(lem, vert, v, arr);
+				arr[vert->number] = 1;
 			}
-			//make_move(lem, vert, v, arr);
 			i++;
 		}
 	}
@@ -65,13 +65,9 @@ int		solve(t_lem *lem)
 		counter = 0;
 		while (end_room->num_ants != lem->total_ants)
 		{
-			counter++;
+			//counter++;
 			printf("Turn: %d\n\n",counter++);
 			run_turn(lem, begin_room);
-			//run_turn(lem, begin_room);
-			//run_turn(lem, begin_room);
-			//run_turn(lem, begin_room);
-			//run_turn(lem, begin_room);
 		}
 		//printf("Did all the moves in %d moves.\n",counter);
 	}

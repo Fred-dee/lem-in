@@ -23,7 +23,7 @@ void	room_status(t_lem *lem)
 
 int		make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited)
 {
-	if ((to->num_ants == 0 || to->number == lem->end_room) && visited[to->number] == 1)
+	if ((to->num_ants == 0 || to->number == lem->end_room) && (visited[to->number] == 0 || visited[to->number] == 1))
 	{
 		if (from->num_ants > 0)
 		{
