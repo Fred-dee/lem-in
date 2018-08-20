@@ -16,6 +16,7 @@ int	parse_link(t_lem *lem, char *str)
 		free(tmp);
 		tmp = ft_strsub(str, ft_strindexof(str, '-') + 1, ft_strlen(str));
 		b = ft_graph_getvertex_byname(lem->g, tmp);
+		free(tmp);
 		if (a != NULL && b != NULL)
 			ft_graph_addedge(lem->g, a->number, b->number);
 		else
@@ -27,7 +28,16 @@ int	parse_link(t_lem *lem, char *str)
 	}
 	return (TRUE);
 }
+void	free_split(char **arr)
+{
+	int i;
 
+	i = 0;
+	while (arr[i] != '\0')
+		free(arr[i++]);
+	free(arr);
+	arr = NULL;
+}
 int	parse_command(t_lem *lem, char *str)
 {
 	char		**split;
@@ -44,6 +54,8 @@ int	parse_command(t_lem *lem, char *str)
 		return (FALSE);
 	split = ft_strsplit(tmp, ' ');
 	v = ft_graph_getvertex_byname(lem->g, split[0]);
+	free_split(split);
+	free(tmp);
 	if(ft_strncmp(str, "##start", 7) == 0)
 	{
 		lem->start_flag = 1;
@@ -78,7 +90,7 @@ int	parse_room(t_lem *lem, char *str)
 			return (FALSE);
 		}
 		ft_graph_addvertex(lem->g, ft_graph_vertexnew(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0));
-		//free the split
+		free_split(split);
 	}
 	return (TRUE);
 }
@@ -97,8 +109,7 @@ void	dfs_path(t_lem *lem, t_vertex *vert, int *arr, char **ret)
 		v = ft_graph_getvertex_byid(lem->g, *(int *)ft_lstat(vert->neighbours, i)->content);
 		if (arr[v->number] == -1)
 		{
-			dfs_path(lem, v, arr, ret);
-			
+			dfs_path(lem, v, arr, ret);	
 			arr[vert->number] = 1;
 		}
 		i++;
