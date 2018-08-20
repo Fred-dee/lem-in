@@ -43,17 +43,15 @@ void	run_turn(t_lem *lem, t_vertex *begin_room)
 	while (i < lem->g->num_vertices)
 		visited[i++] = -1;
 	DFS(lem, begin_room, visited);
-	room_status(lem);
+	if (lem->debug_flag == 1)
+		room_status(lem);
 }
-
-void	game(t_lem *lem, t_vertex* begin_room, t_vertex *end_room, int *visited);
 
 int		solve(t_lem *lem)
 {
 	t_vertex	*begin_room;
 	t_vertex	*end_room;
 	int			*visited;
-	int			counter;
 
 	if (lem != NULL && lem->g != NULL && lem->g->vertices != NULL)
 	{
@@ -63,12 +61,10 @@ int		solve(t_lem *lem)
 			return (FALSE);
 		if ((visited = (int *)ft_memalloc(sizeof(int) * lem->g->num_vertices)) == NULL)
 			return (FALSE);
-		counter = 0;
 		while (end_room->num_ants != lem->total_ants)
 		{
-			//counter++;
-			printf("Turn: %d\n\n",counter++);
 			run_turn(lem, begin_room);
+			ft_putchar('\n');
 		}
 		//printf("Did all the moves in %d moves.\n",counter);
 	}

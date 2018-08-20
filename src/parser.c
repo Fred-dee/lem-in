@@ -48,6 +48,7 @@ int	parse_command(t_lem *lem, char *str)
 	{
 		lem->start_flag = 1;
 		v->num_ants = lem->total_ants;
+		v->ant_name = 1;
 		lem->begin_room = v->number;
 	}
 	else
@@ -119,7 +120,6 @@ int	has_validpath(t_lem *lem)
 	if (start != NULL)
 	{
 		dfs_path(lem, start, arr, &str);
-		printf("The path is: %s\n", str);
 		if (ft_strstr(str, start->name) != NULL && 
 			ft_strstr(str, ft_graph_getvertex_byid(lem->g, lem->end_room)->name) != NULL)
 		{

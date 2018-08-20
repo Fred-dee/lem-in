@@ -13,7 +13,7 @@
 #include <lem_in.h>
 #include <stdio.h>
 
-int	main(void)
+int	main(int ac, char *av[])
 {
 	char		*str;
 	int			read_ret;
@@ -23,6 +23,12 @@ int	main(void)
 	if((read_ret = get_next_line(0, &str)) < 0)
 		return (-1);
 	lem.total_ants = ft_atoi(str);
+	lem.debug_flag = 0;
+	if (ac == 2)
+	{
+		if (ft_strcmp(av[1], "-v") == 0)
+			lem.debug_flag = 1;
+	}
 	if(lem.total_ants <= 0)
 	{
 		ft_putstr_clr(LIGHT_RED, "ERROR: zero or negative amounts of ants.\n");
@@ -55,7 +61,7 @@ int	main(void)
 	}
 	if (has_validpath(&lem) == FALSE)
 		return(FALSE);
-	ft_graph_genmatrices(lem.g);
+	ft_putchar('\n');
 	solve(&lem);
 	return (0);
 }

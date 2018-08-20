@@ -18,6 +18,7 @@ typedef struct	s_vertex
 {
 	char		*name;
 	int			number;
+	int			ant_name;
 	t_list		*neighbours;
 	int			num_ants;
 	int			x_cord;

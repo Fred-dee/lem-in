@@ -23,6 +23,7 @@ typedef struct	s_lem
 	int			end_room;
 	int			start_flag;
 	int			end_flag;
+	int			debug_flag;
 }				t_lem;
 
 int			parse_link(t_lem *lem, char *str);

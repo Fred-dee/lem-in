@@ -28,7 +28,17 @@ int		make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited)
 		if (from->num_ants > 0)
 		{
 			from->num_ants--;
+			to->ant_name = from->ant_name;
+			if (from->number == lem->begin_room)
+				from->ant_name++;
+			else
+				from->ant_name = -1;
 			to->num_ants++;
+			ft_putchar('L');
+			ft_putnbr(to->ant_name);
+			ft_putchar('-');
+			ft_putstr(to->name);
+			ft_putchar(' ');
 			//put the string of the succesfull move
 			return (TRUE);
 		}
