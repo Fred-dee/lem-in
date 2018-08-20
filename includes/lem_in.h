@@ -27,7 +27,7 @@ int			parse_link(t_lem *lem, char *str);
 int			parse_command(t_lem *lem, char *str);
 int			parse_room(t_lem *lem, char *str);
 void		room_status(t_lem *lem);
-int			make_move(t_lem *lem, t_vertex *from, t_vertex *to);
+int			make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited);
 int			solve(t_lem *lem);
 
 #endif
