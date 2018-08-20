@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-static void	swapnfree(char **var, char *new_val)
+void		swapnfree(char **var, char *new_val)
 {
 	char	*tmp;
 

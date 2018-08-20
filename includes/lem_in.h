@@ -21,6 +21,8 @@ typedef struct	s_lem
 	int			total_ants;
 	int			begin_room;
 	int			end_room;
+	int			start_flag;
+	int			end_flag;
 }				t_lem;
 
 int			parse_link(t_lem *lem, char *str);
@@ -28,6 +30,7 @@ int			parse_command(t_lem *lem, char *str);
 int			parse_room(t_lem *lem, char *str);
 void		room_status(t_lem *lem);
 int			make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited);
+int			has_validpath(t_lem *lem);
 int			solve(t_lem *lem);
 
 #endif

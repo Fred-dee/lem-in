@@ -17,5 +17,6 @@
 # define MI 2147483647
 # include "./libft.h"
 
-int	get_next_line(const int fd, char **line);
+int		get_next_line(const int fd, char **line);
+void	swapnfree(char **var, char *new_val);
 #endif

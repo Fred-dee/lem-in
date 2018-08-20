@@ -18,8 +18,6 @@ int	main(void)
 	char		*str;
 	int			read_ret;
 	t_lem		lem;
-	//t_vertex	*begin_room;
-	//t_vertex	*end_room;
 
 	lem.g = ft_graph_new();
 	if((read_ret = get_next_line(0, &str)) < 0)
@@ -50,18 +48,14 @@ int	main(void)
 		}
 		free(str);
 	}
-	//printf("The total amount of ants is: %d\n", lem.total_ants);
+	if (lem.start_flag != 1 || lem.end_flag != 1)
+	{
+		ft_putstr_clr(LIGHT_RED, "ERROR: Either ##start or ##end not set\n");
+		return (FALSE);
+	}
+	if (has_validpath(&lem) == FALSE)
+		return(FALSE);
 	ft_graph_genmatrices(lem.g);
-	//ft_graph_print(lem.g);
-	//room_status(&lem);
-	//begin_room = ft_graph_getvertex_byid(lem.g, lem.begin_room);
-	//end_room = ft_graph_getvertex_byid(lem.g, lem.end_room);
-	//printf("The start room is: %d and has name %s\n",lem.begin_room,
-	//begin_room->name);
-	//printf("The end room is: %d and has name: %s\n",lem.end_room, 
-	//end_room->name);
-	//make_move(&lem, begin_room, ft_graph_getvertex_byid(lem.g, *(int *)begin_room->neighbours->content));
-	//room_status(&lem);
 	solve(&lem);
 	return (0);
 }
