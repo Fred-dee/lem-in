@@ -19,7 +19,11 @@ int	parse_link(t_lem *lem, char *str)
 		if (a != NULL && b != NULL)
 			ft_graph_addedge(lem->g, a->number, b->number);
 		else
-			printf("either a or b are null\n");
+		{
+			ft_putstr_clr(LIGHT_RED, "ERROR parsing link: ");
+			ft_putendl(str);
+			return (FALSE);
+		}
 	}
 	return (TRUE);
 }
@@ -32,6 +36,7 @@ int	parse_command(t_lem *lem, char *str)
 
 	if (get_next_line(0, &tmp) > 0)
 	{
+		ft_putendl(tmp);
 		if (parse_room(lem, tmp) == FALSE)
 			return (FALSE);
 	}
@@ -61,8 +66,12 @@ int	parse_room(t_lem *lem, char *str)
 		split = ft_strsplit(str, ' ');
 		while (split[i] != '\0')
 			i++;
-		if (i != 3)
+		if (i != 3 || split[0][0] == 'L')
+		{
+			ft_putstr_clr(LIGHT_RED, "ERROR parsing room: ");
+			ft_putendl(str);
 			return (FALSE);
+		}
 		ft_graph_addvertex(lem->g, ft_graph_vertexnew(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0));
 		//free the split
 	}

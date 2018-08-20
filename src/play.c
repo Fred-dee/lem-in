@@ -25,7 +25,8 @@ void	DFS(t_lem *lem, t_vertex *vert, int *arr)
 			if (arr[v->number] == -1)
 			{
 				DFS(lem, v, arr);
-				make_move(lem, vert, v, arr);
+				if(vert->number != lem->end_room)
+					make_move(lem, vert, v, arr);
 				arr[vert->number] = 1;
 			}
 			i++;
