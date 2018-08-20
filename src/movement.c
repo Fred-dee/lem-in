@@ -8,6 +8,7 @@ void	room_status(t_lem *lem)
 	if (lem != NULL && lem->g->vertices != NULL)
 	{
 		tmp = lem->g->vertices;
+		ft_putchar('\n');
 		while (tmp != NULL)
 		{
 			v = (t_vertex *)tmp->content;
