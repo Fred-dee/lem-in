@@ -28,6 +28,7 @@ int	parse_link(t_lem *lem, char *str)
 	}
 	return (TRUE);
 }
+
 void	free_split(char **arr)
 {
 	int i;
@@ -38,6 +39,7 @@ void	free_split(char **arr)
 	free(arr);
 	arr = NULL;
 }
+
 int	parse_command(t_lem *lem, char *str)
 {
 	char		**split;
@@ -49,26 +51,23 @@ int	parse_command(t_lem *lem, char *str)
 		ft_putendl(tmp);
 		if (parse_room(lem, tmp) == FALSE)
 			return (FALSE);
+		split = ft_strsplit(tmp, ' ');
+		v = ft_graph_getvertex_byname(lem->g, split[0]);
+		free_split(split);
+		free(tmp);
+		if(ft_strncmp(str, "##start", 7) == 0)
+		{
+			lem->start_flag = 1;
+			v->num_ants = lem->total_ants;
+			v->ant_name = 1;
+			lem->begin_room = v->number;
+		}
+		else
+		{
+			lem->end_flag = 1;
+			lem->end_room = v->number;
+		}
 	}
-	else
-		return (FALSE);
-	split = ft_strsplit(tmp, ' ');
-	v = ft_graph_getvertex_byname(lem->g, split[0]);
-	free_split(split);
-	free(tmp);
-	if(ft_strncmp(str, "##start", 7) == 0)
-	{
-		lem->start_flag = 1;
-		v->num_ants = lem->total_ants;
-		v->ant_name = 1;
-		lem->begin_room = v->number;
-	}
-	else
-	{
-		lem->end_flag = 1;
-		lem->end_room = v->number;
-	}
-	//free split
 	return (TRUE);
 }
 
