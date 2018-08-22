@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPH_H_
-# define GRAPH_H_
-#include "libft.h"
+#ifndef GRAPH_H
+# define GRAPH_H
+# include "libft.h"
 
 typedef struct	s_vertex
 {
@@ -36,7 +36,8 @@ typedef struct	s_graph
 
 void			ft_graph_addedge(t_graph *g, int from, int to);
 t_graph			*ft_graph_new(void);
-t_vertex		*ft_graph_vertexnew(char *name, int x_cord, int y_cord, int num_ants);
+t_vertex		*ft_graph_vertexnew(char *name, int x_cord,
+				int y_cord, int num_ants);
 int				ft_graph_genmatrices(t_graph *g);
 void			ft_graph_genneighbors(t_graph *g);
 t_vertex		*ft_graph_getvertex_byid(t_graph *g, int id);
