@@ -66,7 +66,7 @@ int		solve(t_lem *lem)
 			run_turn(lem, begin_room);
 			ft_putchar('\n');
 		}
-		//printf("Did all the moves in %d moves.\n",counter);
+		free(visited);
 	}
 	return (FALSE);
 }
