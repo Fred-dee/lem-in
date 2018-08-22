@@ -6,11 +6,11 @@
 /*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 11:40:05 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/05/23 11:40:06 by mdilapi          ###   ########.fr       */
+/*   Updated: 2018/08/22 16:27:24 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include <get_next_line.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>

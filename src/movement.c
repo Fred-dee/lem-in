@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/22 16:25:23 by mdilapi           #+#    #+#             */
+/*   Updated: 2018/08/22 16:25:27 by mdilapi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <lem_in.h>
 
 void	room_status(t_lem *lem)
 {
 	t_list		*tmp;
 	t_vertex	*v;
-	
+
 	if (lem != NULL && lem->g->vertices != NULL)
 	{
 		tmp = lem->g->vertices;
@@ -22,9 +34,21 @@ void	room_status(t_lem *lem)
 	}
 }
 
+void	free_split(char **arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i] != '\0')
+		free(arr[i++]);
+	free(arr);
+	arr = NULL;
+}
+
 int		make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited)
 {
-	if ((to->num_ants == 0 || to->number == lem->end_room) && (visited[to->number] == 0 || visited[to->number] == 1))
+	if ((to->num_ants == 0 || to->number == lem->end_room)
+		&& (visited[to->number] == 0 || visited[to->number] == 1))
 	{
 		if (from->num_ants > 0)
 		{
@@ -40,7 +64,6 @@ int		make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited)
 			ft_putchar('-');
 			ft_putstr(to->name);
 			ft_putchar(' ');
-			//put the string of the succesfull move
 			return (TRUE);
 		}
 	}

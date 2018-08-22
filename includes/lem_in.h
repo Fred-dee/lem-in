@@ -33,5 +33,6 @@ void		room_status(t_lem *lem);
 int			make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited);
 int			has_validpath(t_lem *lem);
 int			solve(t_lem *lem);
+void		free_split(char **arr);
 
 #endif

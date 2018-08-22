@@ -13,6 +13,6 @@
 #!bin/sh
 norminette -R CheckForbiddenSourceHeader ./includes/*.h
 norminette -R CheckForbiddenSourceHeader ./src/*.c
-norminette -R CheckForbiddenSourceHeader ./libft/ft_a* ./libft/ft_b* ./libft/ft_i*
-norminette -R CheckForbiddenSourceHeader ./libft/ft_l* ./libft/ft_m* ./libft/ft_p*
-norminette -R CheckForbiddenSourceHeader ./libft/ft_s* ./libft/ft_t*
+#norminette -R CheckForbiddenSourceHeader ./libft/ft_a* ./libft/ft_b* ./libft/ft_i*
+#norminette -R CheckForbiddenSourceHeader ./libft/ft_l* ./libft/ft_m* ./libft/ft_p*
+#norminette -R CheckForbiddenSourceHeader ./libft/ft_s* ./libft/ft_t*
