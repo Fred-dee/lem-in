@@ -30,8 +30,8 @@ void	dfs(t_lem *lem, t_vertex *vert, int *arr)
 
 	i = 0;
 	arr[vert->number] = 0;
-	if (vert->number != lem->end_room)
-	{
+	//if (vert->number != lem->end_room)
+	//{
 		while (i < ft_lstsize(&vert->neighbours))
 		{
 			v = ft_graph_getvertex_byid(lem->g,
@@ -41,11 +41,13 @@ void	dfs(t_lem *lem, t_vertex *vert, int *arr)
 				dfs(lem, v, arr);
 				if (vert->number != lem->end_room)
 					make_move(lem, vert, v, arr);
+				else
+					make_move(lem, v, vert, arr);
 				arr[vert->number] = 1;
 			}
 			i++;
 		}
-	}
+	//}
 }
 
 void	run_turn(t_lem *lem, t_vertex *begin_room)

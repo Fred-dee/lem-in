@@ -83,6 +83,6 @@ int	main(int ac, char *av[])
 		return (FALSE);
 	ft_putchar('\n');
 	solve(&lem);
-	ft_graph_del(&lem.g);
+	//ft_graph_del(&lem.g);
 	return (0);
 }
