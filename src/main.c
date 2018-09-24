@@ -12,33 +12,43 @@
 
 #include <lem_in.h>
 
+int	parser_help(t_lem *lem, char *str)
+{
+	if (ft_strchr(str, '-') != NULL)
+	{
+		if (parse_link(lem, str) == FALSE)
+			return (FALSE);
+	}
+	else if (ft_strncmp(str, "##start", 7) == 0 ||
+		ft_strncmp(str, "##end", 5) == 0)
+	{
+		if (parse_command(lem, str) == FALSE)
+			return (FALSE);
+	}
+	else if (str[0] != '#')
+	{
+		if (parse_room(lem, str) == FALSE)
+			return (FALSE);
+	}
+	return (TRUE);
+}
+
 int	parser(t_lem *lem)
 {
 	char		*str;
-	int			read_ret;
+	int			x;
 
-	while ((read_ret = get_next_line(0, &str)) > 0)
+	x = TRUE;
+	while (get_next_line(0, &str) > 0 && x == TRUE)
 	{
 		ft_putendl(str);
-		if (ft_strchr(str, '-') != NULL)
-		{
-			if (parse_link(lem, str) == FALSE)
-				return (FALSE);
-		}
-		else if (ft_strncmp(str, "##start", 7) == 0 ||
-			ft_strncmp(str, "##end", 5) == 0)
-		{
-			if (parse_command(lem, str) == FALSE)
-				return (FALSE);
-		}
-		else if (str[0] != '#')
-		{
-			if (parse_room(lem, str) == FALSE)
-				return (FALSE);
-		}
+		x = parser_help(lem, str);
 		free(str);
 	}
-	return (TRUE);
+	ft_strdel(&str);
+	if (x == TRUE)
+		return (TRUE);
+	return (FALSE);
 }
 
 int	validator(t_lem *lem)
@@ -56,6 +66,12 @@ int	validator(t_lem *lem)
 	if (has_validpath(lem) == FALSE)
 		return (FALSE);
 	return (TRUE);
+}
+
+int	exit_function(t_lem *lem)
+{
+	ft_graph_del(&lem->g);
+	return (0);
 }
 
 int	main(int ac, char *av[])
@@ -78,11 +94,12 @@ int	main(int ac, char *av[])
 			lem.debug_flag = 1;
 	}
 	if (parser(&lem) == FALSE)
-		return (FALSE);
+	{
+		return (exit_function(&lem));
+	}
 	if (validator(&lem) == FALSE)
-		return (FALSE);
+		return (exit_function(&lem));
 	ft_putchar('\n');
 	solve(&lem);
-	//ft_graph_del(&lem.g);
-	return (0);
+	return (exit_function(&lem));
 }

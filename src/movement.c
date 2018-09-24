@@ -48,7 +48,7 @@ void	free_split(char **arr)
 int		make_move(t_lem *lem, t_vertex *from, t_vertex *to, int *visited)
 {
 	if ((to->num_ants == 0 || to->number == lem->end_room)
-		&& (visited[to->number] == 0 || visited[to->number] == 1))
+		&& (visited[to->number] == 0 || visited[to->number] == 1 || visited[to->number] == -1))
 	{
 		if (from->num_ants > 0)
 		{

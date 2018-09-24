@@ -79,7 +79,8 @@ int		parse_room(t_lem *lem, char *str)
 		split = ft_strsplit(str, ' ');
 		while (split[i] != '\0')
 			i++;
-		if (i != 3 || split[0][0] == 'L')
+		if (i != 3 || split[0][0] == 'L' ||
+			ft_graph_getvertex_byname(lem->g, split[0]) != NULL)
 		{
 			ft_putstr_clr(LIGHT_RED, "ERROR parsing room: ");
 			ft_putendl(str);
