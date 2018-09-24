@@ -84,6 +84,7 @@ int		parse_room(t_lem *lem, char *str)
 		{
 			ft_putstr_clr(LIGHT_RED, "ERROR parsing room: ");
 			ft_putendl(str);
+			free_split(split);
 			return (FALSE);
 		}
 		ft_graph_addvertex(lem->g, ft_graph_vertexnew(split[0],

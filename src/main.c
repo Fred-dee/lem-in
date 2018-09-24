@@ -94,9 +94,7 @@ int	main(int ac, char *av[])
 			lem.debug_flag = 1;
 	}
 	if (parser(&lem) == FALSE)
-	{
 		return (exit_function(&lem));
-	}
 	if (validator(&lem) == FALSE)
 		return (exit_function(&lem));
 	ft_putchar('\n');
